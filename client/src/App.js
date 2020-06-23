@@ -6,7 +6,9 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Register from './components/Register';
 import Login from './components/Login';
-import FetchUser from './components/FetchUser';
+import FetchUser from './components/FetchUserOld';
+import ProtectedRoute from './components/ProtectedRoute';
+import MyCats from './components/MyCats';
 
 
 function App() {
@@ -16,7 +18,8 @@ function App() {
       <FetchUser>
       <Container>
         <Switch>
-          <Route exact path='/' component={Home} />
+          <ProtectedRoute exact path='/' component={Home} />
+          <ProtectedRoute exact path='/my_cats' component={MyCats} />
           <Route exact path='/Register' component={Register} />
           <Route exact path='/login' component={Login} />
         </Switch>

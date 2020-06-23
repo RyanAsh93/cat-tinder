@@ -31,6 +31,7 @@ class Register extends React.Component {
           <Form.Input
             label="Email"
             required
+            type='email'
             autoFocus
             name='email'
             value={email}
@@ -40,6 +41,7 @@ class Register extends React.Component {
           <Form.Input
             label="Password"
             required
+            minLength={8}
             name='password'
             value={password}
             placeholder='Password'
@@ -49,6 +51,7 @@ class Register extends React.Component {
           <Form.Input
             label="Password Confirmation"
             required
+            minLength={8}
             name='passwordConfirmation'
             value={passwordConfirmation}
             placeholder='Password Confirmation'

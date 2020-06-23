@@ -21,6 +21,7 @@ export default class AuthProvider extends React.Component {
       // here I want to go to the home page
     }).catch( (err) => {
         console.log(err)
+        alert('Invalid register attempt')
     })
 
     // then I want to redirct to home page on successful register
@@ -33,6 +34,7 @@ export default class AuthProvider extends React.Component {
         history.push('/')
     })
     .catch((e) => {
+      alert('Invalid login attempt')
     })
   };
 
@@ -44,7 +46,7 @@ export default class AuthProvider extends React.Component {
       history.push('/login')
     })
     .catch((e) => {
-      alert('Invalid login attempt')
+      alert('Invalid logout attempt')
     })
   };
 
