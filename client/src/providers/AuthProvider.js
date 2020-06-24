@@ -28,7 +28,8 @@ export default class AuthProvider extends React.Component {
   };
 
   handleLogin = (user, history) => {
-    axios.post('/api/auth/sign_in', user)
+    axios
+    .post('/api/auth/sign_in', user)
     .then( (res) => {
       this.setState({ user: res.data.data})
         history.push('/')
@@ -39,7 +40,8 @@ export default class AuthProvider extends React.Component {
   };
 
   handleLogout = (history) => {
-    axios.delete('/api/auth/sign_out')
+    axios
+    .delete('/api/auth/sign_out')
     .then((res) => {
       console.log(res)
       this.setState({ user: null })

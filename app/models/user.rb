@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   serialize :liked_cats, Array
 
+  has_many :problems
+
   def self.random_cat(ids)
     ids = ids.empty? ? [0] : ids
     Cat.where('id NOT in (?)', ids).order('RANDOM()')

@@ -5,13 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Cat.destroy_all
+# Cat.destroy_all
+# 5.times do
+#   name = Faker::Creature::Cat.name
+#   breed = Faker::Creature::Cat.breed
+#   registry = Faker::Creature::Cat.registry
+#   avatar = Faker::Avatar.image(slug: name, size: "100x400", format: "png", set: "set4")
+#   Cat.create(name: name, breed: breed, registry: registry, avatar: avatar)
+# end
 
-5.times do
-  name = Faker::Creature::Cat.name
-  breed = Faker::Creature::Cat.breed
-  registry = Faker::Creature::Cat.registry
-  avatar = Faker::Avatar.image(slug: name, size: '100x400', format: 'png', set: 'set4')
-  Cat.create(name: name, breed: breed, registry: registry, avatar: avatar)
+2.times do |i|
+  user = User.create(email: "test#{i}@t.com", password: "12345678")
+
+  # 5.times do |j|
+  #   user.posts.create(title: "post-#{j}")
+
+
+  user.problems.create(question: "what is 1+ 1", answer: 2)
+  user.problems.create(question: "what is 3 + 1", answer: 4)
+  user.problems.create(question: "what is 2 + 1", answer: 3)
 end
-puts "200 Cats Seeded"

@@ -1,25 +1,19 @@
-import React from 'react'
-import { AuthConsumer } from '../providers/AuthProvider'
+import React, { useState, useContext } from 'react'
+import { AuthContext } from '../providers/AuthProvider'
 import { Button, Form, Segment, Header } from 'semantic-ui-react'
 
-class Login extends React.Component {
-  state = { email:'test5@gmail.com', password:'12345678'}
-
-  handleSubmit = (e) => {
-    this.props.auth.handleLogin({...this.state}, this.props.history)
+export default function Login (props) {
+  const {handleLogin} = useContext(AuthContext)
+  function handleSubmit(e) {
+    handleLogin({ email, password}, props.history)
   }
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value })
-  }
-
-  render() {
-    const {email, password} = this.state
-    return (
-      <Segment basic>
+  const [email, setEmail] = useState('test5@gmail.com')
+  const [password, setPassword] = useState('12345678')
+  return (
+    <Segment basic>
         <Header as='h1' textAlign='center'>Login</Header>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Form.Input
             label="Email"
             autoFocus
@@ -27,7 +21,7 @@ class Login extends React.Component {
             name='email'
             value={email}
             placeholder='Email'
-            onChange={this.handleChange}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Form.Input
             label="Password"
@@ -36,23 +30,13 @@ class Login extends React.Component {
             value={password}
             placeholder='Password'
             type='password'
-            onChange={this.handleChange}
+            onChange={(e) =>setPassword(e.target.value)}
           />
           <Segment textAlign='center' basic>
             <Button primary type='submit'>Submit</Button>
           </Segment>
         </Form>
       </Segment>
-    )
-  }
+  )
 }
 
-export default class ConnectedLogin extends React.Component {
-  render() {
-    return(
-      <AuthConsumer>
-        {(auth) => <Login {...this.props} auth={auth} />}
-      </AuthConsumer>
-    )
-  }
-} 
